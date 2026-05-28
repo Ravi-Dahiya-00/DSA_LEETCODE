@@ -11,3 +11,5 @@ public:
         return count<=1;
     }
 };
+
+// we do % n to compare n-1 element with 0th element , becausr n%n gives 0
