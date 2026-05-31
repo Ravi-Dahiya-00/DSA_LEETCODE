@@ -14,6 +14,6 @@ public:
             right--;
         }
 
-        return left==right && left>0 && right<n-1;
+        return left==right && left!=0 && right!=n-1;
     }
 };
