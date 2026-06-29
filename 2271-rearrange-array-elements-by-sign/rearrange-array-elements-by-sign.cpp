@@ -25,7 +25,6 @@ public:
                 ans.push_back(neg[p++]);
             }
         }
-
         return ans;
     }
 };
