@@ -6,13 +6,12 @@ public:
         int mini=INT_MAX;
         while(low<=high){
             int mid=(low+high)/2;
-            if(arr[mid]<mini){
-                mini=arr[mid];
-            }
-            if(arr[high]<arr[mid]){
+            if(arr[low]<=arr[mid]){
+                mini=min(mini,arr[low]);
                 low=mid+1;
             }
             else{
+                mini=min(mini,arr[mid]);
                 high=mid-1;
             }
         }
