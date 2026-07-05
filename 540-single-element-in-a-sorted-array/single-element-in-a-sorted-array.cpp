@@ -10,11 +10,20 @@ public:
         if(arr[n-1]!=arr[n-2]){
             return arr[n-1];
         }
-        for(int i=1;i<n;i++){
-            if(arr[i]!=arr[i-1] && arr[i]!=arr[i+1]){
-                return arr[i];
+       
+       int low=1,high=n-2;
+       while(low<=high){
+            int mid=(low+high)/2;
+            if(arr[mid]!=arr[mid+1] && arr[mid]!=arr[mid-1]){
+                return arr[mid];
             }
-        }
-        return -1;
+            if(mid%2==1 && arr[mid-1]==arr[mid] || mid%2==0 && arr[mid]==arr[mid+1]){
+                low=mid+1;
+            }
+            else if((mid%2==1 && arr[mid]==arr[mid+1] || mid%2==0 && arr[mid]==arr[mid-1])){
+                high=mid-1;
+            }
+       }
+       return -1;
     }
 };
