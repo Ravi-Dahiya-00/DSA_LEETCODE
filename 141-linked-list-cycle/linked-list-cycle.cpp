@@ -9,14 +9,14 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        set<ListNode*> st;
+        map<ListNode*,int> st;
 
         ListNode* temp=head;
         while(temp!=NULL){
-            if(st.contains(temp)){
+            if(st.find(temp)!=st.end()){
                 return true;
             }
-            st.insert(temp);
+            st[temp]=temp->val;
             temp=temp->next;
         }
         return false;
