@@ -7,11 +7,16 @@ public:
             mpp[c]++;
         }
 
-        unordered_map<char,int> mpp2;
+        
         for(char c:t){
-            mpp2[c]++;
+            mpp[c]--;
         }
 
-        return mpp==mpp2;
+        for(auto &it:mpp){
+            if(it.second!=0) return false;
+        }
+
+        return true;
+        
     }
 };
