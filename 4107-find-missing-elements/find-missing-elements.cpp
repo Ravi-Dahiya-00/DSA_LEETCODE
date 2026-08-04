@@ -1,23 +1,30 @@
 class Solution {
 public:
     vector<int> findMissingElements(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
+        int smallest=INT_MAX;
+        int largest=INT_MIN;
+
+        unordered_map<int,int> mpp;
+
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]<smallest) smallest=nums[i];
+            if(nums[i]>largest) largest=nums[i];
+            mpp[nums[i]]++;
+        }
+
+        
+
+        for(int i=smallest;i<=largest;i++){
+            mpp[i]++;
+        }
+
+        
 
         vector<int> ans;
-        int smallest=nums[0];
-        int largest=nums[nums.size()-1];
-        int j=0;
-        for(int i=smallest;i<=largest;i++){
-            if(nums[j]==i){
-                cout << nums[j];
-                j++;
-                continue;
-            }
-            else{
-                ans.push_back(i);
-                // j--;
-            }
+        for(auto& i:mpp){
+            if(i.second==1) ans.push_back(i.first);
         }
+        sort(ans.begin(),ans.end());
         return ans;
     }
 };
