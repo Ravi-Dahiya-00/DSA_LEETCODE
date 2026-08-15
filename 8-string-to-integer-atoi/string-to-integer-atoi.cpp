@@ -1,37 +1,27 @@
 class Solution {
 public:
+    int helper(string s,int i,long long num,int neg){
+        if(i>=s.size() || !isdigit(s[i])){
+            return (int)(num*neg);
+        }
+
+        num=num*10+(s[i]-'0');
+
+        if(num*neg<=INT_MIN) return INT_MIN;
+        if(num*neg>=INT_MAX) return INT_MAX;
+
+        return helper(s,i+1,num,neg);
+    }
     int myAtoi(string s) {
-        long long ans=0;
-        bool neg=false;
-        int n=s.length();
-        int i=0;
-       while(i<n && s[i]==' '){
+      int i=0;
+      while(i<s.size() && s[i]==' ') i++;
+
+      int neg=1;
+      if(i<s.size() && (s[i]=='+' || s[i]=='-')){
+        if(s[i]=='-') neg=-1;
         i++;
-       }
+      }  
 
-       if(i<n && s[i]=='-' || s[i]=='+'){
-        if(s[i]=='-') neg=true;
-        i++;
-       }
-
-
-       while(i<=n && isdigit(s[i])){
-        int digit=s[i]-'0';
-        cout << digit << " ";
-        ans=ans*10+digit;
-
-        if(!neg && ans>INT_MAX){
-            return INT_MAX;
-        }
-        if(neg && -ans<INT_MIN){
-            return INT_MIN;
-        }
-        i++;
-       }
-
-        if(neg){
-            ans=-ans;
-        }
-       return ans;
+      return helper(s,i,0,neg);
     }
 };
